@@ -1,14 +1,12 @@
 import Task from './taskObject.js';
-import { inputTask, taskList } from './variables.js';
+import { taskList } from './variables.js';
 
 export default class ToDo {
   constructor() {
     this.taskData = [];
   }
 
-  addData = () => {
-    const taskValue = inputTask.value.trim();
-
+  addData = (taskValue) => {
     if (taskValue) {
       const newTask = new Task((this.taskData.length + 1), taskValue);
       this.taskData.push(newTask);
@@ -58,10 +56,9 @@ export default class ToDo {
     });
   };
 
-  addTask = () => {
-    this.addData();
+  addTask = (task) => {
+    this.addData(task);
     this.setToLocal();
-    this.createTaskList();
   }
 
   updateIndex = () => {
@@ -74,6 +71,5 @@ export default class ToDo {
     this.taskData.splice(index, 1);
     this.updateIndex();
     this.setToLocal();
-    this.createTaskList();
   }
 }
