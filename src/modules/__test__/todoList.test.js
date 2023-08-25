@@ -96,6 +96,6 @@ describe('todo list: test all functiona', () => {
     test('clear completed task', () => {
       const newData = clearCompletedTask(todo.taskData);
       expect(newData.length).toBe(5);
-    })
+    });
   });
 });

@@ -1,7 +1,12 @@
 import './style.css';
 import ToDo from './modules/todoList.js';
 import { taskList, inputTask, clearButton } from './modules/variables.js';
-import { toggleCheckbox, clearCompletedTask, textDecoration } from './modules/updateList.js';
+import {
+  toggleCheckbox,
+  clearCompletedTask,
+  textDecoration,
+  updateContent,
+} from './modules/updateList.js';
 
 const addButton = document.getElementById('add-btn');
 const todo = new ToDo();
@@ -48,8 +53,8 @@ taskList.addEventListener('dblclick', (e) => {
 taskList.addEventListener('focusout', (e) => {
   if (e.target.classList.contains('task-text')) {
     const index = parseInt(e.target.dataset.index, 10) - 1;
-    todo.taskData[index].description = e.target.textContent.trim();
-    todo.setToLocal();
+    const content = e.target.textContent.trim();
+    updateContent(index, content, todo);
     e.target.blur();
     e.target.contentEditable = false;
   }

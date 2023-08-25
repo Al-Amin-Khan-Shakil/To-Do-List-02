@@ -16,3 +16,8 @@ export const textDecoration = (taskData) => {
     }
   });
 };
+
+export const updateContent = (index, content, todoInstance) => {
+  todoInstance.taskData[index].description = content;
+  todoInstance.setToLocal();
+};
