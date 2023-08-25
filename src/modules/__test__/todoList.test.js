@@ -1,4 +1,5 @@
 import ToDo from '../todoList.js';
+import { toggleCheckbox, clearCompletedTask } from '../updateList.js';
 
 const todo = new ToDo();
 
@@ -73,6 +74,23 @@ describe('todo list: test all functiona', () => {
       let listItem = document.querySelectorAll('.list-item');
       listItem = listdata;
       expect(listItem).toHaveLength(3);
+    });
+  });
+
+  describe('Checkbox test', () => {
+    test('toggle checkbox', () => {
+      todo.addTask('task 1');
+      todo.addTask('task 2');
+      todo.addTask('task 3');
+      todo.addTask('task 4');
+      toggleCheckbox(0, todo);
+      expect(todo.taskData[0].completed).toBeTruthy();
+      toggleCheckbox(0, todo);
+      expect(todo.taskData[0].completed).toBeFalsy();
+      toggleCheckbox(1, todo);
+      toggleCheckbox(3, todo);
+      expect(todo.taskData[1].completed).toBeTruthy();
+      expect(todo.taskData[3].completed).toBeTruthy();
     });
   });
 });
