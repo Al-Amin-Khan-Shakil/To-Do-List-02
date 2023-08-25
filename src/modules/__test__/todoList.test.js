@@ -92,5 +92,10 @@ describe('todo list: test all functiona', () => {
       expect(todo.taskData[1].completed).toBeTruthy();
       expect(todo.taskData[3].completed).toBeTruthy();
     });
+
+    test('clear completed task', () => {
+      const newData = clearCompletedTask(todo.taskData);
+      expect(newData.length).toBe(5);
+    })
   });
 });
