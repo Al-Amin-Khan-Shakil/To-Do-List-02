@@ -48,4 +48,32 @@ describe('todo list: test all functiona', () => {
       expect(listItem).toHaveLength(6);
     });
   });
+
+  describe('Delete one task', () => {
+    test('Delete one task from taskData', () => {
+      todo.deleteTask((index) => {
+        todo.taskData.splice(index, 1);
+      });
+      expect(todo.taskData.length).toBe(5);
+    });
+
+    test('Delete one task from local storage', () => {
+      todo.deleteTask((index) => {
+        todo.taskData.splice(index, 1);
+      });
+      const listdata = JSON.parse(localStorage.getItem('taskCollection'));
+      expect(listdata.length).toBe(4);
+    });
+
+    test('Delete one list item', () => {
+      todo.deleteTask((index) => {
+        todo.taskData.splice(index, 1);
+      });
+      const listdata = JSON.parse(localStorage.getItem('taskCollection'));
+      let listItem = document.querySelectorAll('.list-item');
+      listItem = listdata;
+      expect(listItem).toHaveLength(3);
+    });
+  });
 });
+
