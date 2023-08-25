@@ -1,5 +1,5 @@
 import ToDo from '../todoList.js';
-import { toggleCheckbox, clearCompletedTask } from '../updateList.js';
+import { toggleCheckbox, clearCompletedTask, updateContent } from '../updateList.js';
 
 const todo = new ToDo();
 
@@ -96,6 +96,19 @@ describe('todo list: test all functiona', () => {
     test('clear completed task', () => {
       const newData = clearCompletedTask(todo.taskData);
       expect(newData.length).toBe(5);
+    });
+
+    test('update list content', () => {
+      const content = 'Task List Content';
+      updateContent(1, content, todo);
+      expect(todo.taskData[1].description).toEqual('Task List Content');
+    });
+
+    test('check description at ', () => {
+      const content = 'Task List Content';
+      updateContent(2, content, todo);
+      const listdata = JSON.parse(localStorage.getItem('taskCollection'));
+      expect(listdata[2].description).toEqual('Task List Content');
     });
   });
 });
